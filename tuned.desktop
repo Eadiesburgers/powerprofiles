@@ -1,0 +1,26 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Tuned
+Comment=Bash script wrapped around tuned-adm
+Exec=/home/user/scripts/powerprofile.sh
+Icon=/usr/share/pixmaps/battery.png
+Terminal=true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
