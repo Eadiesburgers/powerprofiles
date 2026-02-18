@@ -88,6 +88,7 @@ while true; do
 				esac
             ;;
         *)
+			clear
             help
             ;;
     esac
