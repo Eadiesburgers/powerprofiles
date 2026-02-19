@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #Author: Rob Lawton
-#Version: 3.0
+#Version: 2.0
 #Date: 16-Feb-2026
 #Usage: Set/see power profiles
 #Dependencies: Tuned
@@ -79,10 +79,13 @@ while true; do
 				    	help
 				        ;;  
 				    5)
+				    	current=$(tuned-adm active)
 				    	while true; do
 	    					clear
 	    					spin_index=$(( (spin_index + 1) % 4 ))
-	    					echo -e "$GREEN""---------------"
+	    					echo -e "$GREEN""$current"
+	    					echo
+	    				    echo -e "$GREEN""---------------"	    					
 	    					echo -e "$GREEN""${spinner[$spin_index]}""  CPU Speed  ""${spinner[$spin_index]}"
 	    				    echo -e "$GREEN""--------------------------"
 	    					grep -i "cpu MHz" /proc/cpuinfo
