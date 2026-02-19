@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #Author: Rob Lawton
-#Version: 2.0
+#Version: 3.0
 #Date: 16-Feb-2026
 #Usage: Set/see power profiles
 #Dependencies: Tuned
@@ -23,7 +23,7 @@ function help
 	echo -e "$GREEN""|    \"2\" - Set performance mode.                                       |"
 	echo -e "$GREEN""|    \"3\" - Set balanced mode.                                          |"
 	echo -e "$GREEN""|    \"4\" - Set power save mode.                                        |"
-	echo -e "$GREEN""|    \"5\" - See current cpu rate - *Use CTRL+C to end                   |"
+	echo -e "$GREEN""|    \"5\" - See current CPU load.                                       |"
 	echo -e "$GREEN""|----------------------------------------------------------------------|"
 	echo -e "$GREEN""|    \"0\" - exit.                                                       |"
 	echo -e "$GREEN""|----------------------------------------------------------------------|"
@@ -46,6 +46,9 @@ function doit
 	}
 
 #begin
+spinner=('/' '-' '\' '|')
+spin_index=0
+
 clear
 help
 while true; do
@@ -76,8 +79,19 @@ while true; do
 				    	help
 				        ;;  
 				    5)
-				    	clear
-				        watch -n1 "grep \"^[c]pu MHz\" /proc/cpuinfo"
+				    	while true; do
+	    					clear
+	    					spin_index=$(( (spin_index + 1) % 4 ))
+	    					echo -e "$GREEN""---------------"
+	    					echo -e "$GREEN""${spinner[$spin_index]}""  CPU Speed  ""${spinner[$spin_index]}"
+	    				    echo -e "$GREEN""--------------------------"
+	    					grep -i "cpu MHz" /proc/cpuinfo
+	    					echo -e "$GREEN""--------------------------"
+	    					echo
+	    					echo -e "$GREEN""(Press any key to stop and return back to main menu)."
+							sleep 0.2
+	        				read -t 0.2 -n 1 key && break
+						done
 				        clear
 				        help
 				        ;;  
@@ -88,7 +102,7 @@ while true; do
 				esac
             ;;
         *)
-			clear
+        	clear
             help
             ;;
     esac
