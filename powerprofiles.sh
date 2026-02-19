@@ -61,7 +61,7 @@ while true; do
 				    	help
 				        ;;
 				    2)
-						doit "tuned-adm profile throughput-performance" "Settting performance mode..." "Halting, error detected! You have tuned installed and all profiles?"
+						doit "tuned-adm profile throughput-performance" "Setting performance mode..." "Halting, error detected! You have tuned installed and all profiles?"
 				        doit "tuned-adm active" "Confirming..." "Halting, error detected! You have tuned installed?"
 				    	help
 						;;  
